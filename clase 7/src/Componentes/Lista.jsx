@@ -33,7 +33,7 @@ export default function Lista() { //datos dinamicos, actualiza
     setTask("")
   }
 
-  const handleChange = (e) => {setTask(e.target.value)}
+  const handleChange = (e) => {setTask(e.target.value)} //cambios
   const eliminarTarea = (id) => {setTasks(tasks.filter(task => task.id !== id))}
   const completarTarea = (id) => {setTasks(tasks.map(task => task.id === id ? { ...task, completada: !task.completada }: task))}
 
