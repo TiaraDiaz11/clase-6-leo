@@ -14,6 +14,5 @@ git add .
 git commit -m "Agregando commit"
 git push
 
-
 cd "clase 7"
 bun run dev
