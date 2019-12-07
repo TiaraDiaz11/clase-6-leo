@@ -29,7 +29,7 @@ import { useState } from 'react'
 import Lista from './Componentes/Lista'
 import './App.css'
 
-function App() {
+function App() { 
 
   return (
     <>
