@@ -7,6 +7,7 @@ function FilterBoton({handleFilter}) {
       <button onClick={() => handleFilter("Hombre")}>Hombre</button>
       <button onClick={() => handleFilter("Mujer")}>Mujer</button>
       <button onClick={() => handleFilter("Unisex")}>Unisex</button>
+      <button onClick={() => handleFilter("Favoritos")}>Favoritos</button>
     </div>
     
   )}

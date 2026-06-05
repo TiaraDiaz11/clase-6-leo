@@ -1,4 +1,5 @@
-/* import { useState, useEffect } from "react"
+/*
+import { useState, useEffect } from "react"
 import "./App.css"
 
 function App() {
@@ -53,39 +54,46 @@ function App() {
       const perfumesNuevo = perfumesFiltradosApi.map((perfume, index) => {
         
         return {...perfume, gender: generos[index % 3]}})
-        setPerfumes(perfumesNuevo)
-        setLoading(false)}
-        fetchPerfumes()
+      //index % 3 para repartir Hombre, Mujer y Unisex
+      setPerfumes(perfumesNuevo)
+      setLoading(false)}
+      fetchPerfumes()
   }, [])
-  
-  const handleSearch = (e) => {setSearch(e.target.value)}
-  const handleFilter = (gender) => {setFiltro(gender)}
-  const agregarFavorito = (perfume) => {
 
-    if (!favoritos.includes(perfume)) {setFavoritos([...favoritos, perfume])
-  } else {
+  const handleSearch = (e) => { setSearch(e.target.value) } //Actualiza el buscador
+  const handleFilter = (gender) => { setFiltro(gender) }
+  const agregarFavorito = (perfume) => { //Funcion
 
-    const eliminarFavorito = favoritos.filter(fav => perfume.id !== fav.id)
-    setFavoritos(eliminarFavorito)}}
-    const productosFiltrados = perfumes.filter((perfume) => {
+    if (!favoritos.includes(perfume)) //Verifica si el perfume ya esta en fav
+      {setFavoritos([...favoritos, perfume])
 
+    } else {
+
+      const eliminarFavorito = favoritos.filter(fav => perfume.id !== fav.id)
+      setFavoritos(eliminarFavorito)}}
+ 
+  const productosFiltrados = perfumes.filter((perfume) => { //Recorre el array de los perfumes
+    if (filtro === "Favoritos")
+      return favoritos.includes(perfume) 
     if (filtro === "Todos") {
-      return perfume.title.toLowerCase().includes(search.toLowerCase())}
-      return (perfume.gender === filtro && perfume.title.toLowerCase().includes(search.toLowerCase()))
-  })
+      return perfume.title.toLowerCase().includes(search.toLowerCase())} //Compara el nombre del perfume con lo que escribio el usuario
+      return (perfume.gender === filtro && perfume.title.toLowerCase().includes(search.toLowerCase())) 
+}) //Filtra por genero
 
-  return (
-    <div>
-      <Titulo/>
-      <Buscador search={search} handleSearch={handleSearch}/>
-      <FilterBoton handleFilter={handleFilter}/>
-      <div className="cards-container">
-        {loading ? <h2 className="loading">Cargando productos...</h2>
-        :productosFiltrados.slice(0, 5).map((perfume) => (
-        <Perfume key={perfume.id} perfume={perfume}/>
-        ))}
-      </div>
+return (
+  <div>
+    <Titulo/>
+    <Buscador search={search} handleSearch={handleSearch}/>
+    <FilterBoton handleFilter={handleFilter}/>
+
+    <div className="cards-container">
+      {loading ? <h2 className="loading">Cargando productos...</h2>
+        : productosFiltrados.slice(0, 5).map((perfume) => (
+          <Perfume key={perfume.id} perfume={perfume} agregarFavorito={agregarFavorito}/> //Renderiza
+        ))} 
     </div>
-    )}
+
+  </div>
+)}
 
 export default App

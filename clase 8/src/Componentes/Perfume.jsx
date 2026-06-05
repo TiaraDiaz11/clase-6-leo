@@ -1,4 +1,4 @@
-function Perfume({perfume}) {
+function Perfume({perfume, agregarFavorito}) {
 
   const {title, brand, thumbnail, price, gender} = perfume
 
@@ -9,6 +9,9 @@ function Perfume({perfume}) {
       <h3>{brand}</h3>
       <p>{gender}</p>
       <span>${price}</span>
+
+      <br/>
+      <button onClick={() => agregarFavorito(perfume)}>❤️</button>
     </div>
   )}
 
